@@ -1,4 +1,4 @@
-PROJECT = crypto
+PROJECT = crypt
 SRC = .
 INC = -I. -I/usr/local/include
 

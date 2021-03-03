@@ -269,7 +269,7 @@ xor_key(uint8_t key[BLOCKSIZE], uint32_t xor) {
     }
 }
 
-int
+LUAMOD_API int
 lhmac_sha1(lua_State *L) {
     size_t key_sz = 0;
     const uint8_t * key = (const uint8_t *)luaL_checklstring(L, 1, &key_sz);
