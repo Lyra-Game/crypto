@@ -14,6 +14,9 @@ all: $(PROJECT).so
 
 $(PROJECT).so: $(OBJ)
 	ld -shared $(OBJ) -o $(PROJECT).so
+ifdef OUTPUT
+	cp -f $(PROJECT).so $(OUTPUT)
+endif
 
 $(OBJ_C) : %.o : %.c
 	$(CC) $(CC_FLAGS) -o $@ $<
