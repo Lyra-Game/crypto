@@ -7,6 +7,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#ifdef __MINGW32__
+#define random()  ((long) rand())
+#define srandom(seed)  srand(seed)
+#endif
+
 #define PADDING_MODE_ISO7816_4 0
 #define PADDING_MODE_PKCS7 1
 #define PADDING_MODE_COUNT 2
@@ -345,7 +350,7 @@ lrandomkey(lua_State *L) {
   int i;
   char x = 0;
   for (i=0;i<8;i++) {
-    tmp[i] = rand() & 0xff;
+    tmp[i] = random() & 0xff;
     x ^= tmp[i];
   }
   if (x==0) {
@@ -1062,7 +1067,7 @@ luaopen_crypt(lua_State *L) {
   if (!init) {
     // Don't need call srandom more than once.
     init = 1 ;
-    srand((rand() << 8) ^ (time(NULL) << 16) ^ getpid());
+    srandom((random() << 8) ^ (time(NULL) << 16) ^ getpid());
   }
   luaL_Reg l[] = {
     { "hashkey", lhashkey },
