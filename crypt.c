@@ -345,7 +345,7 @@ lrandomkey(lua_State *L) {
   int i;
   char x = 0;
   for (i=0;i<8;i++) {
-    tmp[i] = random() & 0xff;
+    tmp[i] = rand() & 0xff;
     x ^= tmp[i];
   }
   if (x==0) {
@@ -1062,7 +1062,7 @@ luaopen_crypt(lua_State *L) {
   if (!init) {
     // Don't need call srandom more than once.
     init = 1 ;
-    srandom((random() << 8) ^ (time(NULL) << 16) ^ getpid());
+    srand((rand() << 8) ^ (time(NULL) << 16) ^ getpid());
   }
   luaL_Reg l[] = {
     { "hashkey", lhashkey },
