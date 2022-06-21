@@ -13,7 +13,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef __MINGW32__ || _MSC_VER
+#if defined(__MINGW32__) || defined(_MSC_VER)
 #define random()  ((long) rand())
 #define srandom(seed)  srand(seed)
 #endif
