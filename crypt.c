@@ -5,7 +5,13 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+
+
+#ifdef WIN32
+#include <process.h>
+#else
 #include <unistd.h>
+#endif
 
 #ifdef __MINGW32__
 #define random()  ((long) rand())
